@@ -2,6 +2,7 @@ package main
 
 import (
     "context"
+    "github.com/segmentio/kafka-go"
     "log"
     "time"
 )
@@ -38,3 +39,5 @@ func main() {
     log.Println("-->>> Sleep...")
     time.Sleep(5 * time.Second)
 }
+
+

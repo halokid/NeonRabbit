@@ -3,6 +3,7 @@ package main
 import (
     "context"
     "fmt"
+    "github.com/segmentio/kafka-go"
     "log"
     "time"
 )
@@ -43,3 +44,5 @@ func Consumer() error {
 func main() {
     Consumer()
 }
+
+

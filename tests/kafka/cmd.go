@@ -6,6 +6,8 @@ import (
     "log"
     "strconv"
     "time"
+
+    "github.com/segmentio/kafka-go"
 )
 
 // the topic and broker address are initialized as constants
@@ -90,3 +92,4 @@ func main() {
     // TODO: only read the latest message from topic
     consume(ctx)
 }
+
