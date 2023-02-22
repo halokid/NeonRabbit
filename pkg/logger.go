@@ -9,7 +9,8 @@ import (
 
 var Logger *zap.SugaredLogger
 
-func init() {
+func LoggerInit() {
+	log.Println("-->>> Pkg logger init")
 	config := zap.NewProductionConfig()
 	config.EncoderConfig.TimeKey = "timestamp"
 	config.EncoderConfig.EncodeTime = zapcore.TimeEncoderOfLayout("Jan 02 15:04:05.000000000")

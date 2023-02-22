@@ -1,8 +1,16 @@
 package pkg
 
-import "testing"
+import (
+	"path/filepath"
+	"testing"
+)
 
 func TestReadEnv(t *testing.T) {
-    env, _ := ReadEnv()
-    t.Logf("%+v", env)
+	// graceful access the file path
+	envFile := "../config.yaml"
+	absFilePath, err := filepath.Abs(envFile)
+	t.Logf("file path -->>> %+v, err -->>> %+v", absFilePath, err)
+
+	env, _ := ReadEnv()
+	t.Logf("%+v", env)
 }
