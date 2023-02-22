@@ -3,7 +3,7 @@ package pkg
 import (
 	"io/ioutil"
 	"log"
-	"path/filepath"
+	"path"
 	"runtime"
 
 	"gopkg.in/yaml.v3"
@@ -25,17 +25,18 @@ func EnvInit() {
 }
 
 func ReadEnv() (*Env, error) {
-	nowFolder := runtime.Caller(1)
-	envFile := "../config.yaml"
+	_, filePath, _, _ := runtime.Caller(1)
+	envFile := path.Join(path.Dir(filePath),"../config.yaml")
+	//envFile := "../config.yaml"
 	// absFilePath, _ := filepath.Abs(envFile)
-	absFilePath, _ := filepath.Rel(envFile)
+	//absFilePath, _ := filepath.Rel(envFile)
 	// log.Println(absFilePath)
 
 	// buf, err := ioutil.ReadFile("../config.yaml")
-	buf, err := ioutil.ReadFile(absFilePath)
-	Logger.Errorf("-->>> Env file read err: %+v, path: %+v", err, absFilePath)
+	buf, err := ioutil.ReadFile(envFile)
+	Logger.Infof("-->>> Env file read err: %+v, path: %+v", err, envFile)
 	env := &Env{}
 	err = yaml.Unmarshal(buf, env)
-	Logger.Errorf("-->>> Env file Unmarshal err: %+v, path: %+v", err, absFilePath)
+	Logger.Infof("-->>> Env file Unmarshal err: %+v, path: %+v", err, envFile)
 	return env, nil
 }

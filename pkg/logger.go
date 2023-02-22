@@ -11,13 +11,15 @@ var Logger *zap.SugaredLogger
 
 func LoggerInit() {
 	log.Println("-->>> Pkg logger init")
-	config := zap.NewProductionConfig()
+	//config := zap.NewProductionConfig()
+	config := zap.NewDevelopmentConfig()
 	config.EncoderConfig.TimeKey = "timestamp"
-	config.EncoderConfig.EncodeTime = zapcore.TimeEncoderOfLayout("Jan 02 15:04:05.000000000")
+	//config.EncoderConfig.EncodeTime = zapcore.TimeEncoderOfLayout("Jan 02 15:04:05.000000000")
 	config.EncoderConfig.StacktraceKey = "" // to hide stacktrace info
 	// logLevel := zap.NewAtomicLevel()		// TODO: default log level is `info`
-	logLevel := zap.NewAtomicLevelAt(zapcore.WarnLevel) // TODO: set the log level to `warn`
+	logLevel := zap.NewAtomicLevelAt(zapcore.InfoLevel) // TODO: set the log level to `warn`
 	config.Level = logLevel
+	config.EncoderConfig.EncodeLevel = zapcore.CapitalColorLevelEncoder
 
 	logger, err := config.Build()
 	if err != nil {

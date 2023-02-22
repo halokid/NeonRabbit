@@ -27,7 +27,7 @@ func (k *Kafka) Pub(topic, message string) error {
 	err := w.WriteMessages(ctx, kafka.Message{
 		Value: []byte(message),
 	})
-	pkg.Logger.Errorf("-->>> Kafka pub err: %+v", err)
+	pkg.Logger.Infof("-->>> Kafka pub err: %+v", err)
 
 	return nil
 }

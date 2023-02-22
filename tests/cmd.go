@@ -12,7 +12,9 @@ func main() {
     // log.Println(time.Now().Unix())
 
     // --- zap ---
-    ZapC1()
+    //ZapC1()
     // ZapC2()
     // Zapc3()
+
+    RealPath()
 }
