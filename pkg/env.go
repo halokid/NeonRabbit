@@ -26,7 +26,7 @@ func EnvInit() {
 
 func ReadEnv() (*Env, error) {
 	_, filePath, _, _ := runtime.Caller(1)
-	envFile := path.Join(path.Dir(filePath),"../config.yaml")
+	envFile := path.Join(path.Dir(filePath), "../config.yaml")
 	//envFile := "../config.yaml"
 	// absFilePath, _ := filepath.Abs(envFile)
 	//absFilePath, _ := filepath.Rel(envFile)

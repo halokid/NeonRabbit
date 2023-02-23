@@ -1,6 +1,8 @@
 broker:
   adapter: kafka
-  topic: neon_rabbit
-  server: 192.168.1.129:9092
+  # topic: neon-rabbit
+  # group: neon-rabbit-group
+  # server: 192.168.1.129:9092
+  server: localhost:9092
 
 

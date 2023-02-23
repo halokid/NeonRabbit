@@ -13,7 +13,28 @@ func NewKafka() *Kafka {
 	return &Kafka{}
 }
 
-func (k *Kafka) Sub() error {
+func (k *Kafka) Sub(topic, groupId string) error {
+
+	// initialize a new reader with the brokers and topic
+	// the groupID identifies the consumer and prevents it
+	// from receivig duplicate message
+	r := kafka.NewReader(kafka.ReaderConfig{
+		// Brokers: []string{broker1Address, broker2Address, broker3Address},
+		Brokers: []string{pkg.EnvGlobal.Broker.Server},
+		Topic:   topic,
+		GroupID: groupId,
+	})
+
+	for {
+		// the `ReadMessage` method blocks until we receive the next event
+		msg, err := r.ReadMessage(context.Background())
+		pkg.Logger.Infof("-->>> Kafka sub err: %+v, msg: %+v", err, msg)
+		pkg.Logger.Infof("-->>> Sub msg: %+v", string(msg.Value))
+		// after receiving the message, do persist process
+		// TODO:
+
+	}
+
 	return nil
 }
 
