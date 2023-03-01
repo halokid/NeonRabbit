@@ -11,8 +11,11 @@ import (
 
 type Env struct {
 	Broker struct {
+		AppPort string
 		Adapter string
 		Server  string
+		Topic   string
+		GroupId string
 	}
 }
 

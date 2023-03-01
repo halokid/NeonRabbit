@@ -1,8 +1,10 @@
 broker:
+  appPort: ":19527"
   adapter: kafka
-  # topic: neon-rabbit
-  # group: neon-rabbit-group
   # server: 192.168.1.129:9092
   server: localhost:9092
+  topic: neon-rabbit
+  groupId: neon-rabbit-group
+  
 
 

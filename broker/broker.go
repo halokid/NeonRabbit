@@ -1,6 +1,7 @@
 package broker
 
 import (
+	daprd "github.com/dapr/go-sdk/service/http"
 	"github.com/halokid/NeonRabbit/broker/adaptee"
 	"github.com/halokid/NeonRabbit/pkg"
 )
@@ -12,8 +13,8 @@ func NewBroker() *Broker {
 }
 
 func (b *Broker) GetAdaptee() Adaptee {
-	env, _ := pkg.ReadEnv()
-	switch env.Broker.Adapter {
+	// env, _ := pkg.ReadEnv()
+	switch pkg.EnvGlobal.Broker.Adapter {
 	case "kafka":
 		return adaptee.NewKafka()
 	}
@@ -22,5 +23,8 @@ func (b *Broker) GetAdaptee() Adaptee {
 
 func (b *Broker) Run() error {
 	// run Broker service
-	return nil
+	s := daprd.NewService(":" + pkg.EnvGlobal.Broker.AppPort)
+	err := s.Start()
+	pkg.Logger.Infof("Broker service err -->>> %+v", err)
+	return err
 }
