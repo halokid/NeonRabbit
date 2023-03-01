@@ -21,6 +21,14 @@ func (b *Broker) GetAdaptee() Adaptee {
 }
 
 func (b *Broker) Run() error {
-	// run Broker service
+
+	brokerAdapter := b.GetAdaptee()
+	prefix := "neon-rabbit"
+	// run Sub as daemon
+	go brokerAdapter.Sub(prefix, prefix + "-group")
+
+	// run Pub for service call
+
+
 	return nil
 }
