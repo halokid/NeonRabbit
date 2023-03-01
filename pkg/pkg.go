@@ -5,4 +5,6 @@ func init() {
 
 	LoggerInit()
 	EnvInit()
+
+	Logger.Infof("EnvGlobal -->>> %+v", EnvGlobal)
 }

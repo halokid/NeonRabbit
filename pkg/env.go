@@ -11,11 +11,11 @@ import (
 
 type Env struct {
 	Broker struct {
-		AppPort string
+		AppPort string		`yaml:"app_port"`
 		Adapter string
 		Server  string
 		Topic   string
-		GroupId string
+		GroupId string		`yaml:"group_id"`
 	}
 }
 

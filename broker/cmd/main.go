@@ -8,6 +8,8 @@ import (
 func main() {
 	b := broker.NewBroker()
 	// start Sub
-	b.GetAdaptee().Sub(pkg.EnvGlobal.Broker.Topic, pkg.EnvGlobal.Broker.GroupId)
-	b.Run()
+	b.GetAdaptee().Sub(pkg.EnvGlobal.Broker.Topic,
+		//pkg.EnvGlobal.Broker.GroupId)
+		"neon-rabbit-group")
+	// b.Run()
 }

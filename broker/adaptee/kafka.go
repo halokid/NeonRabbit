@@ -2,6 +2,7 @@ package adaptee
 
 import (
 	"context"
+	"log"
 
 	"github.com/halokid/NeonRabbit/pkg"
 	kafka "github.com/segmentio/kafka-go"
@@ -23,8 +24,12 @@ func (k *Kafka) Sub(topic, groupId string) error {
 		Brokers: []string{pkg.EnvGlobal.Broker.Server},
 		Topic:   topic,
 		GroupID: groupId,
+		MinBytes:  10e1, // 0.1KB
+		MaxBytes:  10e3, // 10KB
+		//MaxWait: 0,
 	})
 
+	log.Printf("total Offset -->>> %+v", r.Offset())
 	for {
 		// the `ReadMessage` method blocks until we receive the next event
 		msg, err := r.ReadMessage(context.Background())

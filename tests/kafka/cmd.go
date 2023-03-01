@@ -14,7 +14,8 @@ import (
 const (
 	// topic = "message-log"
 	topic         = "neon-rabbit"
-	brokerAddress = "localhost:9092"
+	//brokerAddress = "localhost:9092"
+	brokerAddress = "192.168.1.129:9092"
 	// broker1Address = "localhost:9093"
 	// broker2Address = "localhost:9094"
 	// broker3Address = "localhost:9095"
@@ -92,7 +93,7 @@ func main() {
 	// blocking
 
 	// TODO: producer and consumer in the same context
-	go produce(ctx)
+	//go produce(ctx)
 	consume(ctx)
 
 	// TODO: only read the latest message from topic
