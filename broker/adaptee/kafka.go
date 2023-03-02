@@ -3,7 +3,6 @@ package adaptee
 import (
 	"context"
 	"fmt"
-
 	"github.com/halokid/NeonRabbit/pkg"
 	kafka "github.com/segmentio/kafka-go"
 )
@@ -53,9 +52,13 @@ func (k *Kafka) Pub(topic, message string) error {
 	w := kafka.NewWriter(kafka.WriterConfig{
 		Brokers:  []string{pkg.EnvGlobal.Broker.Server},
 		Topic:    topic,
-		Balancer: &kafka.LeastBytes{},
+		//Balancer: &kafka.LeastBytes{},
+		//Balancer: &kafka.RoundRobin{},
 	})
 
+
+	/*
+	// TODO: if need more consumer, just set more topic
 	for i := 0; i < 100; i++ {
 		w.Topic = fmt.Sprintf("tp%d", i)
 		ctx := context.Background()
@@ -64,12 +67,25 @@ func (k *Kafka) Pub(topic, message string) error {
 		})
 		pkg.Logger.Infof("-->>> Kafka pub err: %+v", err)
 	}
+	 */
 
 	ctx := context.Background()
-	err := w.WriteMessages(ctx, kafka.Message{
-		Value: []byte(message),
-	})
-	pkg.Logger.Infof("-->>> Kafka pub err: %+v", err)
+	//err := w.WriteMessages(ctx, kafka.Message{
+	//	Value: []byte(message),
+	//})
+
+	for i := 0; i < 100; i++ {
+		err := w.WriteMessages(ctx, kafka.Message{
+			//Value: []byte(message),
+			Value: []byte(fmt.Sprintf("%s-%d", message, i)),
+		})
+		pkg.Logger.Infof("-->>> Kafka pub err: %+v", err)
+	}
+
+	//pkg.Logger.Infof("-->>> Kafka pub err: %+v", err)
 
 	return nil
 }
+
+
+

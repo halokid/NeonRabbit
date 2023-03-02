@@ -1,7 +1,6 @@
 package adaptee
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/mattn/go-colorable"
@@ -11,11 +10,11 @@ import (
 
 func TestKafka_Pub(t *testing.T) {
 	k := NewKafka()
-	// k.Pub("neon-rabbit", "test message")
+	k.Pub("neon-rabbit", "test message")
 
-	for i := 0; i < 100; i++ {
-		k.Pub("neon-rabbit", fmt.Sprintf("test message %d", i))
-	}
+	//for i := 0; i < 100; i++ {
+	//	k.Pub("neon-rabbit", fmt.Sprintf("test message %d", i))
+	//}
 
 	// --------------------
 	z := zap.NewDevelopmentEncoderConfig()
