@@ -3,6 +3,7 @@ package broker
 import (
 	daprd "github.com/dapr/go-sdk/service/http"
 	"github.com/halokid/NeonRabbit/broker/adaptee"
+	"github.com/halokid/NeonRabbit/broker/handler"
 	"github.com/halokid/NeonRabbit/pkg"
 )
 
@@ -22,9 +23,17 @@ func (b *Broker) GetAdaptee() Adaptee {
 }
 
 func (b *Broker) Run() error {
+
+	b.GetAdaptee().Sub(pkg.EnvGlobal.Broker.Topic, pkg.EnvGlobal.Broker.GroupId)
+
 	// run Broker service
 	s := daprd.NewService(":" + pkg.EnvGlobal.Broker.AppPort)
-	err := s.Start()
+
+	// add handlers
+	err := s.AddServiceInvocationHandler("/ping", handler.PingHandler)
+	pkg.Logger.Infof("Broker ping handler err -->>> %+v", err)
+
+	err = s.Start()
 	pkg.Logger.Infof("Broker service err -->>> %+v", err)
 	return err
 }

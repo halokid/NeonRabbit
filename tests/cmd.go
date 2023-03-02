@@ -22,7 +22,7 @@ func main() {
 
 	// RealPath()
 
-	// --- DAPR ----
+	// -------------------------- DAPR -------------------------
 	client, err := dapr.NewClient()
 	if err != nil {
 		panic(err)
