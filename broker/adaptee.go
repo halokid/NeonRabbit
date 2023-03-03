@@ -1,6 +1,6 @@
 package broker
 
 type Adaptee interface {
-	Sub(topic, groupId string) error
-	Pub(topic, message string) error
+	Sub() error
+	Pub(message string) error
 }

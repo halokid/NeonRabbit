@@ -24,10 +24,11 @@ func (b *Broker) GetAdaptee() Adaptee {
 
 func (b *Broker) Run() error {
 
-	b.GetAdaptee().Sub(pkg.EnvGlobal.Broker.Topic, pkg.EnvGlobal.Broker.GroupId)
+	// b.GetAdaptee().Sub()
+	// go b.GetAdaptee().Sub()
 
 	// run Broker service
-	s := daprd.NewService(":" + pkg.EnvGlobal.Broker.AppPort)
+	s := daprd.NewService(pkg.EnvGlobal.Broker.AppPort)
 
 	// add handlers
 	err := s.AddServiceInvocationHandler("/ping", handler.PingHandler)

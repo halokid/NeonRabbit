@@ -14,7 +14,7 @@ func PingHandler(ctx context.Context, in *common.InvocationEvent) (out *common.C
 		return
 	}
 	log.Printf(
-		"echo - ContentType:%s, Verb:%s, QueryString:%s, %s",
+		"echo - ContentType:%s, Verb:%s, QueryString:%s, Body: %s",
 		in.ContentType, in.Verb, in.QueryString, in.Data,
 	)
 	out = &common.Content{
@@ -22,5 +22,6 @@ func PingHandler(ctx context.Context, in *common.InvocationEvent) (out *common.C
 		ContentType: in.ContentType,
 		DataTypeURL: in.DataTypeURL,
 	}
+	log.Printf("%+v", out)
 	return
 }
