@@ -1,4 +1,4 @@
-package adaptee
+package brokerx
 
 import (
 	"context"

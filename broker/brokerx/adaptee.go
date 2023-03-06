@@ -1,4 +1,4 @@
-package broker
+package brokerx
 
 type Adaptee interface {
 	Sub() error

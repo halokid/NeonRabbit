@@ -8,13 +8,14 @@ import (
 	"github.com/dapr/go-sdk/service/common"
 )
 
-func PingHandler(ctx context.Context, in *common.InvocationEvent) (out *common.Content, err error) {
+func PingHandler(ctx context.Context, in *common.InvocationEvent) (out *common.Content,
+	err error) {
 	if in == nil {
 		err = errors.New("invocation parameter required")
 		return
 	}
 	log.Printf(
-		"echo - ContentType:%s, Verb:%s, QueryString:%s, Body: %s",
+		"ping - ContentType:%s, Verb:%s, QueryString:%s, Body: %s",
 		in.ContentType, in.Verb, in.QueryString, in.Data,
 	)
 	out = &common.Content{
@@ -22,6 +23,7 @@ func PingHandler(ctx context.Context, in *common.InvocationEvent) (out *common.C
 		ContentType: in.ContentType,
 		DataTypeURL: in.DataTypeURL,
 	}
-	log.Printf("%+v", out)
+	log.Printf("PingHandler return out -->>> %+v, string data -->>> %+v",
+		out, string(in.Data))
 	return
 }

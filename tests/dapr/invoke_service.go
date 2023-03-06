@@ -22,10 +22,10 @@ func C1() error {
 		ContentType: "text/plain",
 		Data:        []byte("hellow"),
 	}
-	resp, err := client.InvokeMethodWithContent(ctx, "serving", "echo", "post", content)
+	resp, err := client.InvokeMethodWithContent(ctx, "neon_broker", "ping", "post", content)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("service method invoked, response: %s\n", string(resp))
+	fmt.Printf("service method invoked response -->>> %s\n", string(resp))
 	return nil
 }
