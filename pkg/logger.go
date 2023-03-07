@@ -34,3 +34,7 @@ func LoggerInit(pkgx *Pkg) {
 	// log.Warn("Warn log level message")
 	// log.Error("Error log level message")
 }
+
+func (p *Pkg) CheckError() {
+
+}
