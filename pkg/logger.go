@@ -7,10 +7,10 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
-var Logger *zap.SugaredLogger
+// var Logger *zap.SugaredLogger
 
-func LoggerInit() {
-	log.Println("-->>> Pkg logger init")
+func LoggerInit(pkgx *Pkg) {
+	log.Println("-->>> Pkg logger init", pkgx)
 	//config := zap.NewProductionConfig()
 	config := zap.NewDevelopmentConfig()
 	config.EncoderConfig.TimeKey = "timestamp"
@@ -26,7 +26,8 @@ func LoggerInit() {
 		log.Fatal(err)
 	}
 
-	Logger = logger.Sugar()
+	// Logger = logger.Sugar()
+	pkgx.Logger = logger.Sugar()
 
 	// log := logger.Sugar()
 	// log.Info("INFO log level message")

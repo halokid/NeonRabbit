@@ -2,17 +2,6 @@ Broker
 ---------------------------
 
 # Code architecture & data flow
-code architecture design is base on the program data flow
-
-Go import design must single flow, can not import each other
-
-`every next flow can be the son file or folder`
-income -->>> service
-              |-- handler
-                    |-- brokerx
-                    |-- pkgx
-                          |-- vo
-                          |-- logger
               
 
 # Test Producer & Consumer

@@ -10,6 +10,8 @@ func TestReadEnv(t *testing.T) {
 	//absFilePath, err := filepath.Abs(envFile)
 	//t.Logf("file path -->>> %+v, err -->>> %+v", absFilePath, err)
 	//
-	env, _ := ReadEnv()
+
+	pkgxTmp := Pkg{}
+	env, _ := ReadEnv(&pkgxTmp)
 	t.Logf("%+v", env)
 }

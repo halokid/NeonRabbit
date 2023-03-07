@@ -4,7 +4,7 @@ import (
 	"github.com/halokid/NeonRabbit/pkg"
 )
 
-type Brokerx struct{
+type Brokerx struct {
 	Adaptee Adaptee
 }
 
@@ -22,7 +22,7 @@ func NewBroker() *Brokerx {
 
 func (b *Brokerx) SetAdaptee() error {
 	// env, _ := pkg.ReadEnv()
-	switch pkg.EnvGlobal.Broker.Adapter {
+	switch pkg.Pkgx.Env.Broker.Adapter {
 	case "kafka":
 		b.Adaptee = NewKafka()
 	}
@@ -32,7 +32,3 @@ func (b *Brokerx) SetAdaptee() error {
 func (b *Brokerx) GetAdaptee() Adaptee {
 	return b.Adaptee
 }
-
-
-
-
