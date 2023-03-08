@@ -1,7 +1,7 @@
 package brokerx
 
 import (
-	"github.com/halokid/NeonRabbit/pkg"
+	"github.com/halokid/NeonRabbit/unify"
 )
 
 type Brokerx struct {
@@ -22,7 +22,7 @@ func NewBroker() *Brokerx {
 
 func (b *Brokerx) SetAdaptee() error {
 	// env, _ := pkg.ReadEnv()
-	switch pkg.Pkgx.Env.Broker.Adapter {
+	switch unify.Unifyx.Pkg.Env.Broker.Adapter {
 	case "kafka":
 		b.Adaptee = NewKafka()
 	}

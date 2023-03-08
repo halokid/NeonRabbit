@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 )
 
-func ConvertStructToByte(s interface{}) []byte {
+func (p *Pkg) ConvertStructToByte(s interface{}) []byte {
 	rsp := new(bytes.Buffer)
 	err := json.NewEncoder(rsp).Encode(s)
 	if err != nil {

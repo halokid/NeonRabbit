@@ -6,18 +6,18 @@ import (
 
 	"github.com/dapr/go-sdk/service/common"
 	"github.com/halokid/NeonRabbit/broker/brokerx"
-	"github.com/halokid/NeonRabbit/pkg"
+	"github.com/halokid/NeonRabbit/unify"
 )
 
 func PubHandler(ctx context.Context, in *common.InvocationEvent) (out *common.Content,
 	err error) {
 
-	pkg.Pkgx.Logger.Info("-->>> call PubHandler")
+	unify.Unifyx.Pkg.Logger.Info("-->>> call PubHandler")
 	message := string(in.Data)
-	pkg.Pkgx.Logger.Infof("PubHandler pub message -->>> %+v", message)
+	unify.Unifyx.Pkg.Logger.Infof("PubHandler pub message -->>> %+v", message)
 	brokerx.BrokerxGlobal.Adaptee.Pub(message)
 
-	rsp := pkg.ConvertStructToByte(pkg.Pkgx.Vo.SussceRsp())
+	rsp := unify.Unifyx.Pkg.ConvertStructToByte(unify.Unifyx.Vo.SussceRsp())
 	out = &common.Content{
 		// Data: in.Data,
 		Data:        rsp,

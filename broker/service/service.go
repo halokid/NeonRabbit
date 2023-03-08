@@ -4,7 +4,7 @@ import (
 	daprd "github.com/dapr/go-sdk/service/http"
 	"github.com/halokid/NeonRabbit/broker/brokerx"
 	"github.com/halokid/NeonRabbit/broker/handler"
-	"github.com/halokid/NeonRabbit/pkg"
+	"github.com/halokid/NeonRabbit/unify"
 )
 
 type Service struct{}
@@ -15,16 +15,16 @@ func Run() error {
 	// b.GetAdaptee().Sub()
 	go brokerx.BrokerxGlobal.Adaptee.Sub()
 
-	s := daprd.NewService(pkg.Pkgx.Env.Broker.AppPort)
+	s := daprd.NewService(unify.Unifyx.Pkg.Env.Broker.AppPort)
 
 	// TODO: add handlers
 	err := s.AddServiceInvocationHandler("/ping", handler.PingHandler)
-	pkg.Pkgx.Logger.Infof("Broker ping handler err -->>> %+v", err)
+	unify.Unifyx.Pkg.Logger.Infof("Broker ping handler err -->>> %+v", err)
 
 	err = s.AddServiceInvocationHandler("/pub", handler.PubHandler)
-	pkg.Pkgx.Logger.Infof("Broker pub handler err -->>> %+v", err)
+	unify.Unifyx.Pkg.Logger.Infof("Broker pub handler err -->>> %+v", err)
 
 	err = s.Start()
-	pkg.Pkgx.Logger.Infof("Broker service err -->>> %+v", err)
+	unify.Unifyx.Pkg.Logger.Infof("Broker service err -->>> %+v", err)
 	return nil
 }

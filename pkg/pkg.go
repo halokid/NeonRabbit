@@ -3,7 +3,6 @@ package pkg
 import (
 	"log"
 
-	"github.com/halokid/NeonRabbit/pkg/vo"
 	"go.uber.org/zap"
 )
 
@@ -17,8 +16,6 @@ func init() {
 	LoggerInit(&pkgxTmp)
 	EnvInit(&pkgxTmp)
 
-	pkgxTmp.Vo = vo.NewVo()
-
 	// Logger.Infof("EnvGlobal -->>> %+v", EnvGlobal)
 	Pkgx = &pkgxTmp
 	log.Printf("-->>> Pkgx init assign %+v", Pkgx)
@@ -28,5 +25,4 @@ func init() {
 type Pkg struct {
 	Logger *zap.SugaredLogger
 	Env    *Env
-	Vo     *vo.Vo
 }
