@@ -1,0 +1,7 @@
+/.idea
+/go.sum
+/playflow/pkgx/__pycache__/*.pyc
+/playflow/flow/__pycache__/*.pyc
+/playflow/tasks/__pycache__/*.pyc
+/tests/kafka/*.exe
+*.exe

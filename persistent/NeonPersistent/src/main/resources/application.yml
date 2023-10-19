@@ -1,0 +1,13 @@
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: xxx
+    password: xxx 
+    url: jdbc:postgresql://8.8.8.8:5432/neonrabbit
+  sql:
+    init:
+      continue-on-error: true
+      mode: always
+      platform: postgres
+
