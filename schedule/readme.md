@@ -15,4 +15,11 @@ remote call the automation jobs by AS platform API
 2. Schedule -->>> broker -->>> sn 
 
 
+# Run
+
+```shell
+
+dapr.exe run --app-id neon_schedule  --app-protocol http  --app-port 19567  --dapr-http-port 3700   -- go run main.go
+
+```
 

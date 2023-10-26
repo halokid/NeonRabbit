@@ -10,6 +10,7 @@ func Test_ConConvertStructToByte(t *testing.T) {
   r := rsp{
     Code: 9,
   }
-  rspB := ConvertStructToByte(r)
+  p := Pkg{}
+  rspB := p.ConvertStructToByte(r)
   t.Logf("rspB -->>> %+v", rspB)
 }
