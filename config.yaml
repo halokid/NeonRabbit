@@ -16,9 +16,11 @@ sn:
 
 sp:
   app_port: ":19557"
+  dapr_http_port: ":3800"
 
 schedule:
   app_port: ":19567"
+  dapr_http_port: ":3700"
 
 
 

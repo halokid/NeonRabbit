@@ -3,8 +3,10 @@ package handler
 import (
   "context"
   "errors"
+  "fmt"
   "log"
 
+  dapr "github.com/dapr/go-sdk/client"
   "github.com/dapr/go-sdk/service/common"
   "github.com/halokid/NeonRabbit/unify"
 )
@@ -18,6 +20,24 @@ func JobHandler(ctx context.Context, in *common.InvocationEvent) (out *common.Co
     return
   }
 
+  // TODO: call sp service user method
+  //ctx := context.Background()
+  client, err := dapr.NewClient()
+  log.Printf("Job handler dapr celint -->>> %+v", client)
+  if err != nil {
+    panic(any(err))
+  }
+  defer client.Close()
+  content := &dapr.DataContent{
+    ContentType: "text/plain",
+    Data: []byte(`{"userId":777}`),
+  }
+  resp, err := client.InvokeMethodWithContent(ctx, "neon_sp", "user", "post", content)
+  if err != nil {
+    panic(any(err))
+  }
+  fmt.Printf("service method invoked, response -->>> %s", string(resp))
+
   unify.Unifyx.Pkg.Logger.L.Infof(
     "job - ContentType:%s, Verb:%s, QueryString:%s, Body: %s",
     in.ContentType, in.Verb, in.QueryString, in.Data,
@@ -29,7 +49,7 @@ func JobHandler(ctx context.Context, in *common.InvocationEvent) (out *common.Co
   }
 
   unify.Unifyx.Pkg.Logger.L.Infof("JobHandler return out -->>> %+v, string data -->>> %+v",
-    out, string(in.Data))
+    out, string(out.Data))
   log.Printf("%+v", string(in.Data))
   return
 }

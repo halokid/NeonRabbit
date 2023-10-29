@@ -3,7 +3,7 @@ package service
 import (
   daprd "github.com/dapr/go-sdk/service/http"
   // daprd "github.com/dapr/go-sdk/service/grpc"
-  "github.com/halokid/NeonRabbit/cb/handler"
+  "github.com/halokid/NeonRabbit/schedule/handler"
   "github.com/halokid/NeonRabbit/unify"
 )
 
@@ -16,6 +16,9 @@ func Run() error {
   // TODO: add handlers
   err := s.AddServiceInvocationHandler("/ping", handler.PingHandler)
   unify.Unifyx.Pkg.Logger.L.Infof("Schedule service ping handler err -->>> %+v", err)
+
+  err = s.AddServiceInvocationHandler("/job", handler.JobHandler)
+  unify.Unifyx.Pkg.Logger.L.Infof("Schedule service job handler err -->>> %+v", err)
 
   err = s.Start()
   unify.Unifyx.Pkg.Logger.L.Infof("Schedule service err -->>> %+v", err)

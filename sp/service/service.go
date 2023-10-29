@@ -17,6 +17,9 @@ func Run() error {
   err := s.AddServiceInvocationHandler("/ping", handler.PingHandler)
   unify.Unifyx.Pkg.Logger.L.Infof("Sp ping handler err -->>> %+v", err)
 
+  err = s.AddServiceInvocationHandler("/user", handler.UserHandler)
+  unify.Unifyx.Pkg.Logger.L.Infof("Sp User handler err -->>> %+v", err)
+
   err = s.Start()
   unify.Unifyx.Pkg.Logger.L.Infof("Sp service err -->>> %+v", err)
   return nil
