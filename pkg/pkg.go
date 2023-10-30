@@ -13,6 +13,7 @@ func init() {
   pkgxTmp := Pkg{}
   LoggerInit(&pkgxTmp)
   EnvInit(&pkgxTmp)
+  initClient()
 
   // Logger.Infof("EnvGlobal -->>> %+v", EnvGlobal)
   Pkgx = &pkgxTmp
@@ -30,4 +31,3 @@ type Pkg struct {
 func exInit() error {
   return nil
 }
-

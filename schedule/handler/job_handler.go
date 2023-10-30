@@ -8,6 +8,7 @@ import (
 
   dapr "github.com/dapr/go-sdk/client"
   "github.com/dapr/go-sdk/service/common"
+  "github.com/halokid/NeonRabbit/pkg"
   "github.com/halokid/NeonRabbit/unify"
 )
 
@@ -22,17 +23,19 @@ func JobHandler(ctx context.Context, in *common.InvocationEvent) (out *common.Co
 
   // TODO: call sp service user method
   //ctx := context.Background()
-  client, err := dapr.NewClient()
-  log.Printf("Job handler dapr celint -->>> %+v", client)
-  if err != nil {
-    panic(any(err))
-  }
-  defer client.Close()
+  /*
+    client, err := dapr.NewClient()
+    log.Printf("Job handler dapr celint -->>> %+v", client)
+    if err != nil {
+      panic(any(err))
+    }
+    defer client.Close()
+  */
   content := &dapr.DataContent{
     ContentType: "text/plain",
-    Data: []byte(`{"userId":777}`),
+    Data:        []byte(`{"userId":777}`),
   }
-  resp, err := client.InvokeMethodWithContent(ctx, "neon_sp", "user", "post", content)
+  resp, err := pkg.DaprClient.InvokeMethodWithContent(ctx, "neon_sp", "user", "post", content)
   if err != nil {
     panic(any(err))
   }
