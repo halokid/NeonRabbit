@@ -55,6 +55,7 @@ dapr run --app-id neon_client --app-protocol http --dapr-http-port 3601 -- go ru
 # Run in different proto
 HTTP
 ```shell 
+# TODO: the port `19527` need same as `config.yaml` broker block `app_port` field, now is `19528`
 dapr run --app-id neon_broker  --app-protocol http  --app-port 19527  --dapr-http-port 3500   -- go run main.go 
 
 dapr run --app-id neon_broker  --app-protocol http  --app-port 19527  --dapr-http-port 3500  --log-level debug  -- go run main.go 
