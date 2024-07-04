@@ -33,3 +33,5 @@ func PingHandler(ctx context.Context, in *common.InvocationEvent) (out *common.C
   log.Printf("%+v", string(in.Data))
   return
 }
+
+

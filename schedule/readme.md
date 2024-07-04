@@ -5,7 +5,7 @@ remote call the automation jobs by AS platform API
 # Process flow
 
 *single process*
-1. Schedule -->>> sp 
+1. Schedule -->>> sp (this is sample, add GW, all trace is:  gw -->>> Schedule -->>> sp)
 2. Schedule -->>> sn
 3. Schedule -->>> cb
 

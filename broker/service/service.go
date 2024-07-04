@@ -1,9 +1,13 @@
 package service
 
 import (
-	// daprd "github.com/dapr/go-sdk/service/http"
-	daprd "github.com/dapr/go-sdk/service/grpc"
-	"github.com/halokid/NeonRabbit/unify"
+  //daprd "github.com/dapr/go-sdk/service/http"
+  "log"
+  "net"
+
+  daprd "github.com/dapr/go-sdk/service/grpc"
+  "github.com/halokid/NeonRabbit/broker/handler"
+  "github.com/halokid/NeonRabbit/unify"
 )
 
 type Service struct{}
@@ -26,11 +30,35 @@ func Run() error {
 
   err = s.Start()
   unify.Unifyx.Pkg.Logger.L.Infof("Broker service err -->>> %+v", err)
-  return nil
   */
 
-
+  ///*
   // TODO: GRPC 
+  // Create a new gRPC service
   s, err := daprd.NewService(unify.Unifyx.Pkg.Env.Broker.AppPort)
   unify.Unifyx.Pkg.Logger.L.Infof("Broker ping handler err -->>> %+v", err)
+  if err != nil {
+    log.Fatalf("failed to start the server: %v", err)
+    return err
+  }
+
+  // Add a service invocation handler
+  err = s.AddServiceInvocationHandler("ping", handler.PingHandler)
+  if err != nil {
+    log.Fatalf("error adding service invocation handler: %v", err)
+    return  err
+  }
+
+  // Start the gRPC service
+  log.Println("Starting gRPC service...")
+  if err := s.Start(); err != nil && err != net.ErrClosed {
+    log.Fatalf("error starting service: %v", err)
+  }
+  //*/
+
+  return  nil
 }
+
+
+
+
