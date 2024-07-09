@@ -36,3 +36,14 @@ java -jar zipkin-server-2.24.0-exec.jar
 .\bin\windows\kafka-server-start.bat  .\config\server.properties
 
 ```
+
+# Dapr commands
+```shell 
+
+dapr dashboard -p 9999
+
+```
+
+
+
+

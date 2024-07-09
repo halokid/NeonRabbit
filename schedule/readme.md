@@ -12,7 +12,7 @@ remote call the automation jobs by AS platform API
 
 *mutiple process*
 1. Schedule -->>> sp -->>> sn
-2. Schedule -->>> broker -->>> sn 
+2. Schedule -->>> broker(grpc) -->>> sn 
 
 
 # Run

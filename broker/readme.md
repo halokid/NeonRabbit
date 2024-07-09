@@ -33,6 +33,26 @@ go build -o neon_client .
 
 ```
 
+# description
+Dapr's sidecar can listen for both HTTP and gRPC requests even if you specify only one of the ports. By default, if you don't specify the --dapr-http-port or --dapr-grpc-port, Dapr will use the default ports (HTTP on 3500 and gRPC on 50001).
+
+# Dapr argument sample
+```powershell
+
+# Your application will now communicate with the Dapr sidecar using HTTP on port 50001.
+dapr run --app-id myapp --app-port 50001 --dapr-http-port 3500 --app-protocol http
+
+
+# Your application will now communicate with the Dapr sidecar using gRPC on port 50001.
+dapr run --app-id myapp --app-port 50001 --dapr-http-port 3500 --app-protocol grpc
+
+# `--dapr-http-port` means expose the http port outside to call
+# `--dapr-grpc-port` means expose the grpc port outside to call 
+# `--app-protocol` means the protocol dapr sidebar call service
+dapr run --app-id neon_broker  --app-protocol grpc  --app-port 19527  --dapr-grpc-port 50001 --dapr-http-port 3500  -- go run main.go
+
+```
+
 # Service run & invoke
 ```powershell
 
@@ -63,9 +83,9 @@ dapr run --app-id neon_broker  --app-protocol http  --app-port 19527  --dapr-htt
 
 gRPC
 ```shell 
-dapr run --app-id neon_broker  --app-protocol grpc  --app-port 19527  --dapr-grpc-port 3500  -- go run main.go
+dapr run --app-id neon_broker  --app-protocol grpc  --app-port 19527  --dapr-grpc-port 50001  -- go run main.go
 
-dapr run --app-id neon_broker  --app-protocol grpc  --app-port 19527  --dapr-grpc-port 3500 --log-level debug -- go run main.go
+dapr run --app-id neon_broker  --app-protocol grpc  --app-port 19527  --dapr-grpc-port 50001 --log-level debug -- go run main.go
 ```
 
 
