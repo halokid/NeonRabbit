@@ -17,7 +17,7 @@ A neon style clever robbit.
 * Schedulde (http)
 * Sn(http)
 * Sp (http)
-* Cb (http)
+* Cb (pure grpc)
 * Broker (grpc, for bigger data, high performance scenaior etc.) 
 
 
